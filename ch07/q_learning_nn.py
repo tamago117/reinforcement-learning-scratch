@@ -20,6 +20,7 @@ class QNet(Model):
         super().__init__()
         self.l1 = L.Linear(hidden_size)
         self.l2 = L.Linear(action_size)
+        
 
     def forward(self, x):
         h = F.relu(self.l1(x))
@@ -88,6 +89,9 @@ for episode in range(episodes):
 
     average_loss = total_loss / cnt
     loss_history.append(average_loss)
+
+    if episode % 1000 == 0:
+        print('episode: {}, loss: {:.3f}'.format(episode, average_loss))
 
 
 plt.xlabel('episode')
